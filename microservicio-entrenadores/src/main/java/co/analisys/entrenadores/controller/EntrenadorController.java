@@ -2,9 +2,12 @@ package co.analisys.entrenadores.controller;
 
 import co.analisys.entrenadores.model.Entrenador;
 import co.analisys.entrenadores.service.EntrenadorService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/entrenadores")
@@ -17,13 +20,15 @@ public class EntrenadorController {
     }
 
     @PostMapping
-    public Entrenador crear(@RequestBody Entrenador entrenador) {
+    public Entrenador crear(@Valid @RequestBody Entrenador entrenador) {
         return entrenadorService.registrar(entrenador);
     }
 
     @GetMapping("/{id}/existe")
-    public Boolean existeEntrenador(@PathVariable String id) {
-        return entrenadorService.existePorId(id);
+    public Map<String, Boolean> existeEntrenador(@PathVariable String id) {
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("existe", entrenadorService.existePorId(id));
+        return response;
     }
 
     @GetMapping
