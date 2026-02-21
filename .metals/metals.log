@@ -4116,3 +4116,14 @@ WARNING: Unmatched cancel notification for request id 4459
 2026.02.21 12:39:00 INFO  no build target found for C:\Users\nicol\Documents\9 Semestre\Microservicios\Taller de Gimnasio\Microservices-GYM\microservicio-miembros\src\main\java\co\analisys\miembros\exception\GlobalExceptionHandler.java. Using fallback presentation compiler.
 feb. 21, 2026 12:39:59 P. M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+2026.02.21 12:40:00 INFO  no build target found for C:\Users\nicol\Documents\9 Semestre\Microservicios\Taller de Gimnasio\Microservices-GYM\microservicio-miembros\src\main\java\co\analisys\miembros\exception\GlobalExceptionHandler.java. Using fallback presentation compiler.
+feb. 21, 2026 12:40:15 P. M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+feb. 21, 2026 12:40:15 P. M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+feb. 21, 2026 12:40:16 P. M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2026.02.21 12:40:16 INFO  no build target found for C:\Users\nicol\Documents\9 Semestre\Microservicios\Taller de Gimnasio\Microservices-GYM\microservicio-miembros\src\main\java\co\analisys\miembros\exception\GlobalExceptionHandler.java. Using fallback presentation compiler.
+feb. 21, 2026 12:40:18 P. M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2026.02.21 12:40:19 INFO  no build target found for C:\Users\nicol\Documents\9 Semestre\Microservicios\Taller de Gimnasio\Microservices-GYM\microservicio-miembros\src\main\java\co\analisys\miembros\exception\GlobalExceptionHandler.java. Using fallback presentation compiler.
