@@ -56,12 +56,12 @@ public class EntrenadorService {
 
     public void eliminar(String id) {
         Entrenador entrenador = obtenerPorId(id);
-        
+
         // Verificar si está referenciado en una clase
         if (isEntrenadorReferenciado(id)) {
             throw new InvalidEntityException("No se puede eliminar entrenador " + id + ". Está asignado a una clase");
         }
-        
+
         entrenadorRepository.deleteById(entrenador.getId());
     }
 
@@ -81,9 +81,9 @@ public class EntrenadorService {
                     Map.class);
             return response != null && response.getOrDefault("referenciado", false);
         } catch (RestClientException ex) {
-            // Si hay error de conexión, asumimos que está referenciado (mejor ser cautelosos)
+            // Si hay error de conexión, asumimos que está referenciado (mejor ser
+            // cautelosos)
             return true;
         }
     }
 }
-

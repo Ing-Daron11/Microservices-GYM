@@ -58,12 +58,12 @@ public class MiembroService {
 
     public void eliminar(String id) {
         Miembro miembro = obtenerPorId(id);
-        
+
         // Verificar si está referenciado en una clase
         if (isMiembroReferenciado(id)) {
             throw new InvalidEntityException("No se puede eliminar miembro " + id + ". Está inscrito en una clase");
         }
-        
+
         miembroRepository.deleteById(miembro.getId());
     }
 

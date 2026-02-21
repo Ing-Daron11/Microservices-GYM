@@ -58,12 +58,12 @@ public class EquipoService {
 
     public void eliminar(String id) {
         Equipo equipo = obtenerPorId(id);
-        
+
         // Verificar si está referenciado en una clase
         if (isEquipoReferenciado(id)) {
             throw new InvalidEntityException("No se puede eliminar equipo " + id + ". Está asignado a una clase");
         }
-        
+
         equipoRepository.deleteById(equipo.getId());
     }
 
