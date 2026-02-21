@@ -149,6 +149,24 @@ public class ClaseService {
         return claseRepository.save(clase);
     }
 
+    public void eliminar(String claseId) {
+        ClaseId id = new ClaseId(claseId);
+        if (!claseRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Clase no encontrada: " + claseId);
+        }
+        claseRepository.deleteById(id);
+    }
+
+    public Clase quitarEntrenador(String claseId) {
+        Clase clase = claseRepository.findById(new ClaseId(claseId))
+                .orElseThrow(() -> new ResourceNotFoundException("Clase no encontrada: " + claseId));
+        if (clase.getEntrenadorId() == null || clase.getEntrenadorId().getEntrenador_id() == null) {
+            throw new InvalidEntityException("La clase no tiene un entrenador asignado.");
+        }
+        clase.setEntrenadorId(null);
+        return claseRepository.save(clase);
+    }
+
     private void validarEntrenador(String entrenadorId) {
         Boolean existe;
         try {

@@ -3,6 +3,7 @@ package co.analisys.clases.controller;
 import co.analisys.clases.model.Clase;
 import co.analisys.clases.service.ClaseService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -47,6 +48,17 @@ public class ClaseController {
     @DeleteMapping("/{id}/miembros/{miembroId}")
     public Clase removerMiembro(@PathVariable String id, @PathVariable String miembroId) {
         return claseService.removerMiembro(id, miembroId);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminar(@PathVariable String id) {
+        claseService.eliminar(id);
+    }
+
+    @DeleteMapping("/{id}/entrenador")
+    public Clase quitarEntrenador(@PathVariable String id) {
+        return claseService.quitarEntrenador(id);
     }
 
     @GetMapping
