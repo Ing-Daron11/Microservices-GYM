@@ -3,6 +3,7 @@ package co.analisys.entrenadores.controller;
 import co.analisys.entrenadores.model.Entrenador;
 import co.analisys.entrenadores.service.EntrenadorService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -22,6 +23,22 @@ public class EntrenadorController {
     @PostMapping
     public Entrenador crear(@Valid @RequestBody Entrenador entrenador) {
         return entrenadorService.registrar(entrenador);
+    }
+
+    @GetMapping("/{id}")
+    public Entrenador obtenerPorId(@PathVariable String id) {
+        return entrenadorService.obtenerPorId(id);
+    }
+
+    @PutMapping("/{id}")
+    public Entrenador actualizar(@PathVariable String id, @Valid @RequestBody Entrenador entrenador) {
+        return entrenadorService.actualizar(id, entrenador);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminar(@PathVariable String id) {
+        entrenadorService.eliminar(id);
     }
 
     @GetMapping("/{id}/existe")

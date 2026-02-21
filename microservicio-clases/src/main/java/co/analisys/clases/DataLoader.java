@@ -9,6 +9,7 @@ import co.analisys.clases.repository.ClaseRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -26,7 +27,9 @@ public class DataLoader implements CommandLineRunner {
                 "Yoga Matutino",
                 new Horario(LocalDateTime.now().plusDays(1).withHour(8).withMinute(0)),
                 20,
-                new EntrenadorId("1"));
+                new EntrenadorId("1"),
+                new ArrayList<>(),
+                new ArrayList<>());
         claseRepository.save(clase1);
 
         Clase clase2 = new Clase(
@@ -34,16 +37,20 @@ public class DataLoader implements CommandLineRunner {
                 "Spinning Vespertino",
                 new Horario(LocalDateTime.now().plusDays(1).withHour(18).withMinute(0)),
                 15,
-                new EntrenadorId("2"));
+                new EntrenadorId("2"),
+                new ArrayList<>(),
+                new ArrayList<>());
         claseRepository.save(clase2);
 
-        // clase sin entrenador asignado inicialmente
+        // clase sin entrenador, equipos y miembros asignados inicialmente
         Clase clase3 = new Clase(
                 new ClaseId("3"),
                 "Pilates",
                 new Horario(LocalDateTime.now().plusDays(2).withHour(10).withMinute(0)),
                 12,
-                null);
+                null,
+                new ArrayList<>(),
+                new ArrayList<>());
         claseRepository.save(clase3);
 
         System.out.println("Datos de clases cargados exitosamente.");
