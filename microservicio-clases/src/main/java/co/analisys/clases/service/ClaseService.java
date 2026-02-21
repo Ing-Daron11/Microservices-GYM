@@ -85,16 +85,16 @@ public class ClaseService {
     public Clase agregarEquipo(String claseId, String equipoIdValue) {
         Clase clase = claseRepository.findById(new ClaseId(claseId))
                 .orElseThrow(() -> new ResourceNotFoundException("Clase no encontrada: " + claseId));
-        
+
         validarEquipo(equipoIdValue);
-        
+
         EquipoId equipoId = new EquipoId(equipoIdValue);
-        
+
         // Verificar si el equipo ya está asignado
         if (clase.getEquipos().contains(equipoId)) {
             throw new InvalidEntityException("El equipo ya está asignado a esta clase: " + equipoIdValue);
         }
-        
+
         clase.getEquipos().add(equipoId);
         return claseRepository.save(clase);
     }
@@ -102,13 +102,13 @@ public class ClaseService {
     public Clase removerEquipo(String claseId, String equipoIdValue) {
         Clase clase = claseRepository.findById(new ClaseId(claseId))
                 .orElseThrow(() -> new ResourceNotFoundException("Clase no encontrada: " + claseId));
-        
+
         EquipoId equipoId = new EquipoId(equipoIdValue);
-        
+
         if (!clase.getEquipos().contains(equipoId)) {
             throw new InvalidEntityException("El equipo no está asignado a esta clase: " + equipoIdValue);
         }
-        
+
         clase.getEquipos().remove(equipoId);
         return claseRepository.save(clase);
     }
@@ -116,21 +116,21 @@ public class ClaseService {
     public Clase agregarMiembro(String claseId, String miembroIdValue) {
         Clase clase = claseRepository.findById(new ClaseId(claseId))
                 .orElseThrow(() -> new ResourceNotFoundException("Clase no encontrada: " + claseId));
-        
+
         // Validar capacidad
         if (clase.getMiembros().size() >= clase.getCapacidadMaxima()) {
             throw new InvalidEntityException("Clase llena. Capacidad máxima: " + clase.getCapacidadMaxima());
         }
-        
+
         validarMiembro(miembroIdValue);
-        
+
         MiembroId miembroId = new MiembroId(miembroIdValue);
-        
+
         // Verificar si el miembro ya está inscrito
         if (clase.getMiembros().contains(miembroId)) {
             throw new InvalidEntityException("El miembro ya está inscrito en esta clase: " + miembroIdValue);
         }
-        
+
         clase.getMiembros().add(miembroId);
         return claseRepository.save(clase);
     }
@@ -138,13 +138,13 @@ public class ClaseService {
     public Clase removerMiembro(String claseId, String miembroIdValue) {
         Clase clase = claseRepository.findById(new ClaseId(claseId))
                 .orElseThrow(() -> new ResourceNotFoundException("Clase no encontrada: " + claseId));
-        
+
         MiembroId miembroId = new MiembroId(miembroIdValue);
-        
+
         if (!clase.getMiembros().contains(miembroId)) {
             throw new InvalidEntityException("El miembro no está inscrito en esta clase: " + miembroIdValue);
         }
-        
+
         clase.getMiembros().remove(miembroId);
         return claseRepository.save(clase);
     }
@@ -203,19 +203,19 @@ public class ClaseService {
     // Métodos para verificar si una entidad está siendo usada en una clase
     public boolean isEntrenadorReferenciado(String entrenadorId) {
         return claseRepository.findAll().stream()
-                .anyMatch(clase -> clase.getEntrenadorId() != null && 
-                         clase.getEntrenadorId().getEntrenador_id().equals(entrenadorId));
+                .anyMatch(clase -> clase.getEntrenadorId() != null &&
+                        clase.getEntrenadorId().getEntrenador_id().equals(entrenadorId));
     }
 
     public boolean isEquipoReferenciado(String equipoId) {
         return claseRepository.findAll().stream()
                 .anyMatch(clase -> clase.getEquipos().stream()
-                         .anyMatch(eq -> eq.getEquipo_id().equals(equipoId)));
+                        .anyMatch(eq -> eq.getEquipo_id().equals(equipoId)));
     }
 
     public boolean isMiembroReferenciado(String miembroId) {
         return claseRepository.findAll().stream()
                 .anyMatch(clase -> clase.getMiembros().stream()
-                         .anyMatch(m -> m.getMiembro_id().equals(miembroId)));
+                        .anyMatch(m -> m.getMiembro_id().equals(miembroId)));
     }
 }
